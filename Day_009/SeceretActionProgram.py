@@ -1,5 +1,4 @@
 from replit import clear
-# HINT: You can call clear() to clear the output in the console.
 import art
 
 # Display logo
@@ -19,13 +18,21 @@ while moreBidders == 'yes':
 
     moreBidders = input("Are there any other bidders? Type 'yes' or 'no'.\n")
 
-# Find the winner who has maximum bid.
-winnerName = ''
-winnerBid = 0
-for key, value in dict.items():
-    if winnerBid < int(value):
-        winnerName = key
-        winnerBid = int(value)
+# Call clear() to clear the output in the console.
+clear()
 
+
+# Find the winner who has maximum bid.
+def find_highest_bidder(bid_record):
+    winner = ''
+    highest_bid = 0
+    for key, value in bid_record.items():
+        if highest_bid < int(value):
+            winner = key
+            highest_bid = int(value)
+    return winner, highest_bid
+
+
+winnerName, winnerBid = find_highest_bidder(dict)
 # Display the winner
 print(f"The winner is {winnerName} with a bid of ${winnerBid}.")
