@@ -3,7 +3,7 @@ from art import logo
 
 
 def random_number():
-    return random.randint(1, 13)
+    return random.randint(1, 10)
 
 
 def sum_value_of_cards(cards):
