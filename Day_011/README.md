@@ -1,4 +1,4 @@
-##### All these information below coming from  https://www.udemy.com/course/100-days-of-code/learn/lecture/19658866#overview#
+##### All these information below coming from  [Link](https://www.udemy.com/course/100-days-of-code/learn/lecture/19658866#overview#)
 #
 ############### Our Blackjack House Rules #####################
 # Rules: 
