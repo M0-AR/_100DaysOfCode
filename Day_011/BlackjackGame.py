@@ -3,7 +3,10 @@ from art import logo
 
 
 def random_number():
-    return random.randint(1, 10)
+    """Return a random card from the deck of cards."""
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    random_num = random.choice(cards)
+    return cards[random_num]
 
 
 def sum_value_of_cards(cards):
