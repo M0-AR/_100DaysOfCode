@@ -16,6 +16,18 @@ def sum_value_of_cards(cards):
     return sum_cards
 
 
+def calculate_score(cards):
+    # Hint 7
+    if sum_value_of_cards(cards) == 21 and len(cards) == 2:
+        return 0
+    # Hint 8
+    if sum_value_of_cards(cards) > 21 and 11 in cards:
+        cards.remove(11)
+        cards.append(1)
+
+    return sum_value_of_cards(cards)
+
+
 def blackjack_game():
     print(logo)
     user_cards = []
