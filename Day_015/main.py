@@ -1,3 +1,5 @@
+# Need refactoring
+
 MENU = {
     "espresso": {
         "ingredients": {
@@ -30,6 +32,8 @@ resources = {
     "coffee": 100,
 }
 
+total_money = 0
+
 
 def coffee_machine(argument):
     switcher = {
@@ -50,10 +54,20 @@ def espresso():
     cost = MENU['espresso']['cost']
 
     check_resources = enough_resources(water, 0, coffee)
-    if check_resources == "ok":
-        print("make espresso")
-    else:
+
+    if check_resources != "ok":
         print(f"Sorry there is not enough {check_resources}.")
+    else:
+        money_checking = enough_money(cost)
+
+        if money_checking != "ok":
+            print(f"Sorry that's not enough money. Money refunded.")
+        else:
+            resources['water'] -= water
+            resources['coffee'] -= coffee
+            global total_money
+            total_money += cost
+            print("Here is your espresso. Enjoy!")
 
 
 def latte():
@@ -64,10 +78,20 @@ def latte():
 
     check_resources = enough_resources(water, milk, coffee)
 
-    if check_resources == "ok":
-        print("make espresso")
-    else:
+    if check_resources != "ok":
         print(f"Sorry there is not enough {check_resources}.")
+    else:
+        money_checking = enough_money(cost)
+
+        if money_checking != "ok":
+            print(f"Sorry that's not enough money. Money refunded.")
+        else:
+            resources['water'] -= water
+            resources['milk'] -= milk
+            resources['coffee'] -= coffee
+            global total_money
+            total_money += cost
+            print("Here is your latte. Enjoy!")
 
 
 def cappuccino():
@@ -86,7 +110,12 @@ def cappuccino():
         if money_checking != "ok":
             print(f"Sorry that's not enough money. Money refunded.")
         else:
-            print("Making cappuccino.")
+            resources['water'] -= water
+            resources['milk'] -= milk
+            resources['coffee'] -= coffee
+            global total_money
+            total_money += cost
+            print("Here is your cappuccino. Enjoy!")
 
 
 def enough_resources(water, milk, coffee):
@@ -124,7 +153,7 @@ def report():
     print(f"Water: {resources['water']}ml")
     print(f"Milk: {resources['milk']}ml")
     print(f"Coffee: {resources['coffee']}g")
-    print(f"Money:")
+    print(f"Money: ${total_money}")
 
 
 # To turn off the Coffee Machine
