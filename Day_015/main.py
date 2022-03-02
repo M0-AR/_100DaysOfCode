@@ -53,7 +53,7 @@ def espresso():
     coffee = MENU['espresso']['ingredients']['coffee']
     cost = MENU['espresso']['cost']
 
-    check_resources = enough_resources(water, 0, coffee)
+    check_resources = is_enough_resources(water, 0, coffee)
 
     if check_resources != "ok":
         print(f"Sorry there is not enough {check_resources}.")
@@ -76,7 +76,7 @@ def latte():
     coffee = MENU['latte']['ingredients']['coffee']
     cost = MENU['latte']['cost']
 
-    check_resources = enough_resources(water, milk, coffee)
+    check_resources = is_enough_resources(water, milk, coffee)
 
     if check_resources != "ok":
         print(f"Sorry there is not enough {check_resources}.")
@@ -95,16 +95,9 @@ def latte():
 
 
 def cappuccino():
-    water = MENU['cappuccino']['ingredients']['water']
-    milk = MENU['cappuccino']['ingredients']['milk']
-    coffee = MENU['cappuccino']['ingredients']['coffee']
     cost = MENU['cappuccino']['cost']
 
-    check_resources = enough_resources(water, milk, coffee)
-
-    if check_resources != "ok":
-        print(f"Sorry there is not enough {check_resources}.")
-    else:
+    if is_enough_resources(MENU["ingredient"]):
         money_checking = enough_money(cost)
 
         if money_checking != "ok":
@@ -118,15 +111,12 @@ def cappuccino():
             print("Here is your cappuccino. Enjoy!")
 
 
-def enough_resources(water, milk, coffee):
-    if water > resources['water']:
-        return "water"
-    elif milk > resources['milk']:
-        return "milk"
-    elif coffee > resources['coffee']:
-        return "coffee"
-    else:
-        return "ok"
+def is_enough_resources(order_ingredients):
+    for item in order_ingredients:
+        if order_ingredients[item] >= resources[item]:
+            print(f"Sorry there is not enough {item}.")
+            return False
+    return True
 
 
 def enough_money(cost):
