@@ -71,9 +71,11 @@ def compare(user_score, computer_score):
 # 10 + 11
 def play_game():
     print(logo)
+
     is_game_over = False
     user_score = 0
     computer_score = 0
+
     while not is_game_over:
         user_score = calculate_score(user_cards)
         computer_score = calculate_score(computer_cards)
